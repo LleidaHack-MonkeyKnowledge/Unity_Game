@@ -210,9 +210,7 @@ namespace M2MqttUnity.Examples
         protected override void DecodeMessage(string topic, byte[] message)
         {
             string msg = System.Text.Encoding.UTF8.GetString(message);
-            Debug.Log("Received: " + msg);
             StoreMessage(msg);
-            deserializer.GetDataFromJson(msg);
             if (topic == "hackeps/RA")
             {
                 if (autoTest)
@@ -236,6 +234,9 @@ namespace M2MqttUnity.Examples
         protected override void Update()
         {
             base.Update(); // call ProcessMqttEvents()
+
+            //Send info to plant
+            deserializer.GetDataFromJson(eventMessages[eventMessages.Count - 1]);
 
             if (eventMessages.Count > 0)
             {
