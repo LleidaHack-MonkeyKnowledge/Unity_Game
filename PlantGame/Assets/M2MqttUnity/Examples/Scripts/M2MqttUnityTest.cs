@@ -56,6 +56,10 @@ namespace M2MqttUnity.Examples
         private List<string> eventMessages = new List<string>();
         private bool updateUI = false;
 
+        //______________________________
+        Deserializer deserializer;
+
+
         public void TestPublish()
         {
             client.Publish("hackeps/RA", System.Text.Encoding.UTF8.GetBytes("Test message"), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
@@ -195,6 +199,9 @@ namespace M2MqttUnity.Examples
 
         protected override void Start()
         {
+            //___________________________________________________
+            deserializer = FindObjectOfType<Deserializer>();
+
             SetUiMessage("Ready.");
             updateUI = true;
             base.Start();
@@ -205,6 +212,7 @@ namespace M2MqttUnity.Examples
             string msg = System.Text.Encoding.UTF8.GetString(message);
             Debug.Log("Received: " + msg);
             StoreMessage(msg);
+            deserializer.GetDataFromJson(msg);
             if (topic == "hackeps/RA")
             {
                 if (autoTest)
