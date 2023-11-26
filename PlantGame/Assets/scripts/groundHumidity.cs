@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class groundHumidity : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class groundHumidity : MonoBehaviour
     [SerializeField]
     private bool m_ignoreTimeScale;
     int ground_Humidity;
+    public GameObject gText;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +36,7 @@ public class groundHumidity : MonoBehaviour
 
     public void setValue(int gHumidity)
     {
-        ground_Humidity = gHumidity;
+        gText.GetComponent<TextMeshProUGUI>().text = gHumidity.ToString();
+        ground_Humidity = gHumidity;       
     }
 }

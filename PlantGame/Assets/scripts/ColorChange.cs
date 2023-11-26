@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ColorChange : MonoBehaviour
 {
@@ -11,9 +12,11 @@ public class ColorChange : MonoBehaviour
 
     Color color;
     int opacity;
+    public GameObject _light;
 
     public void SetValue(int light)
     {
+        _light.GetComponent<TextMeshProUGUI>().text = light.ToString();
         opacity = light;
         opacity = opacity / 100;
     }
