@@ -9,15 +9,17 @@ public class Thermometer : MonoBehaviour
     public Slider _slider;
     Color sliderColor;
     float _color;
+    public GameObject celcius;
+
     public void SetValue(float temperature) 
     {
-
+        celcius.GetComponent<Text>().text = temperature.ToString();
         _color = temperature;
         _color = _color/40;
     }
     void Start()
     {
-     
+ 
     }
 
     // Update is called once per frame
