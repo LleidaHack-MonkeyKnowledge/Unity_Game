@@ -10,6 +10,7 @@ public class groundHumidity : MonoBehaviour
     private float m_fadeDuration;
     [SerializeField]
     private bool m_ignoreTimeScale;
+    int ground_Humidity;
 
     // Start is called before the first frame update
     void Start()
@@ -21,13 +22,18 @@ public class groundHumidity : MonoBehaviour
     {
         // Substituir els GetMouseButton per quan la planta necessita ser regada: ground Humidity < x
         
-        if (Input.GetMouseButtonDown(0)) 
+        if (ground_Humidity < 55) 
         {
             thisImage.CrossFadeAlpha(0f, m_fadeDuration, m_ignoreTimeScale);
         }
-        if (Input.GetMouseButtonDown(1))
+        else
         {
             thisImage.CrossFadeAlpha(1f, m_fadeDuration, m_ignoreTimeScale);
         }
+    }
+
+    public void setValue(int gHumidity)
+    {
+        ground_Humidity = gHumidity;
     }
 }
