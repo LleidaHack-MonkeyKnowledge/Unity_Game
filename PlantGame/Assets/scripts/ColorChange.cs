@@ -9,9 +9,14 @@ public class ColorChange : MonoBehaviour
     //Color day = new Color(0f, 0f, 0f, 0f);
     //Color night = new Color(1f, 1f, 1f, 0.1f);
 
-    public Slider colorSlider;
     Color color;
+    int opacity;
 
+    public void SetValue(int light)
+    {
+        opacity = light;
+        opacity = opacity / 100;
+    }
     void Start()
     {
         color = gameObject.GetComponent<Image>().color;
@@ -24,7 +29,7 @@ public class ColorChange : MonoBehaviour
         
 
         //Change the object color
-        Color dayNight = new Color(color.r, color.g, color.b, colorSlider.value - 0.2f);
+        Color dayNight = new Color(color.r, color.g, color.b, opacity - 0.2f);
         gameObject.GetComponent<Image>().color = dayNight;
     }
 
